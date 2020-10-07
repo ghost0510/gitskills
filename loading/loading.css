@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color:#DB4D6D;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+h1,h2,h3{
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 2px;
+}
+.monster {
+    position: relative;
+    width: 110px;
+    height: 100px;
+    background-color: #e55a54;
+    border-radius: 20px;
+    margin: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: jumping 0.8s infinite alternate;
+    
+}
+.monster .monstereye{
+    width: 40%;
+    height: 40%;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.monster .monstereyeball{
+    width: 50%;
+    height: 50%;
+    background-color:#0c4475;
+    border-radius: 50%;
+    animation: eyesmove 1.6s infinite alternate;
+}
+.monster .monstermouth{
+    width: 32%;
+    height: 12px;
+    background-color: #fff;
+}
+@keyframes jumping{ 
+    50%{
+    top:0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    100%{
+    top:-50px;
+    box-shadow: 0 120px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+@keyframes eyesmove{
+    0%,10%{
+        transform: translate(50%);
+    }
+    90%,100%{
+        transform: translate(-50%);
+    }
+}
+.monster::before,
+.monster::after{
+    position: absolute;
+    top:-10px;
+    left:50%;
+    content: "";
+    display: block;
+    width: 20%;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+
+    
+}
+.monster::before{
+    transform: translateX(-70%) rotate(45deg);
+}
+.monster::after{
+    transform: translateX(-30%) rotate(-45deg);
+}
+.monster.blue{
+    background-color: #0c4475;
+    animation-delay: 0.4s;
+}
+.monster.blue .monstereyeball,
+.monster.blue .monstermouth{
+    background-color: #e55a54;
+}
+.loadingPage{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c4475;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s;
+
+}
+.loadingPage .loading{
+    width: 200px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 50px;
+    overflow: hidden;
+    
+}
+.loadingPage .loading .bar{
+    width: 0%;
+    height: 100%;
+    background-color: #e55a54;
+}
+.loadingPage.complete{
+    opacity: 0;
+}
+.loadingPage.complete .monster{
+    transition: 1s;
+    transform: rotateZ(360deg) scale(0.2);
+}
